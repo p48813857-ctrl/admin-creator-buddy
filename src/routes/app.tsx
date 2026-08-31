@@ -5,6 +5,9 @@ import { AppShell } from "@/components/app-shell";
 
 export const Route = createFileRoute("/app")({
   beforeLoad: async () => {
+    // Session lives in browser storage, so only guard on the client.
+    // Guarding during SSR would log the user out on every page refresh.
+    if (typeof window === "undefined") return;
     const { data, error } = await supabase.auth.getUser();
     if (error || !data.user) {
       throw redirect({ to: "/login" });
