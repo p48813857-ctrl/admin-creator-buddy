@@ -29,7 +29,6 @@ function AgentsPage() {
             <th className="p-3 text-left font-semibold">User</th>
             <th className="p-3 text-left font-semibold">Email</th>
             <th className="p-3 text-left font-semibold">Roles</th>
-            <th className="p-3 text-right font-semibold">Actions</th>
           </tr>
         </thead>
         <tbody>
