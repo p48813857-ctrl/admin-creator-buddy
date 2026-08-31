@@ -71,7 +71,15 @@ export const bulkInsertLeads = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }) => {
     const { supabase, userId } = context;
-    const rows = data.leads.map((l) => ({ ...l, created_by: userId }));
+    // Team leaders may only insert leads scoped to their own team (RLS),
+    // so stamp the uploader's team on every row. CEO (no team) uses null.
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("team_id")
+      .eq("id", userId)
+      .maybeSingle();
+    const teamId = (profile as { team_id?: string | null } | null)?.team_id ?? null;
+    const rows = data.leads.map((l) => ({ ...l, created_by: userId, team_id: teamId }));
     const { data: inserted, error } = await supabase
       .from("leads")
       .insert(rows)
