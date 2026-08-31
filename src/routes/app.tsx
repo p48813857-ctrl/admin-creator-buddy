@@ -4,6 +4,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { AppShell } from "@/components/app-shell";
 
 export const Route = createFileRoute("/app")({
+  // Session lives in browser storage; SSR has no bearer token, so protected
+  // server functions (getMe) would 401 during render.
+  ssr: false,
   beforeLoad: async () => {
     // Session lives in browser storage, so only guard on the client.
     // Guarding during SSR would log the user out on every page refresh.
