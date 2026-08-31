@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { useSuspenseQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { listUsers, setUserRole } from "@/lib/admin.functions";
-import { toast } from "sonner";
-import { cn } from "@/lib/utils";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { listUsers } from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/app/admin/agents")({
   component: () => (
