@@ -18,19 +18,8 @@ function initials(name: string) {
 }
 
 function AgentsPage() {
-  const qc = useQueryClient();
   const fetchUsers = useServerFn(listUsers);
-  const doSetRole = useServerFn(setUserRole);
   const { data: users } = useSuspenseQuery({ queryKey: ["users"], queryFn: () => fetchUsers() });
-  const mut = useMutation({
-    mutationFn: (v: { targetUserId: string; role: "admin" | "agent"; action: "add" | "remove" }) =>
-      doSetRole({ data: v }),
-    onSuccess: () => {
-      toast.success("Role updated");
-      qc.invalidateQueries({ queryKey: ["users"] });
-    },
-    onError: (e: Error) => toast.error(e.message),
-  });
 
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
