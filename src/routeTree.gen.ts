@@ -10,33 +10,206 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as SignupRouteImport } from './routes/signup'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAgentRouteImport } from './routes/app.agent'
+import { Route as AppChatRouteImport } from './routes/app.chat'
+import { Route as AppAdminAgentsRouteImport } from './routes/app.admin.agents'
+import { Route as AppAdminAnalyticsRouteImport } from './routes/app.admin.analytics'
+import { Route as AppAdminAssignRouteImport } from './routes/app.admin.assign'
+import { Route as AppAdminReportsRouteImport } from './routes/app.admin.reports'
+import { Route as AppAdminUploadRouteImport } from './routes/app.admin.upload'
+import { Route as AppCeoIndexRouteImport } from './routes/app.ceo.index'
+import { Route as AppCeoPeopleRouteImport } from './routes/app.ceo.people'
+import { Route as AppCeoTeamsRouteImport } from './routes/app.ceo.teams'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SignupRoute = SignupRouteImport.update({
+  id: '/signup',
+  path: '/signup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAgentRoute = AppAgentRouteImport.update({
+  id: '/agent',
+  path: '/agent',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppChatRoute = AppChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminAgentsRoute = AppAdminAgentsRouteImport.update({
+  id: '/admin/agents',
+  path: '/admin/agents',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminAnalyticsRoute = AppAdminAnalyticsRouteImport.update({
+  id: '/admin/analytics',
+  path: '/admin/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminAssignRoute = AppAdminAssignRouteImport.update({
+  id: '/admin/assign',
+  path: '/admin/assign',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminReportsRoute = AppAdminReportsRouteImport.update({
+  id: '/admin/reports',
+  path: '/admin/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAdminUploadRoute = AppAdminUploadRouteImport.update({
+  id: '/admin/upload',
+  path: '/admin/upload',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCeoIndexRoute = AppCeoIndexRouteImport.update({
+  id: '/ceo/',
+  path: '/ceo/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCeoPeopleRoute = AppCeoPeopleRouteImport.update({
+  id: '/ceo/people',
+  path: '/ceo/people',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCeoTeamsRoute = AppCeoTeamsRouteImport.update({
+  id: '/ceo/teams',
+  path: '/ceo/teams',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/agent': typeof AppAgentRoute
+  '/app/chat': typeof AppChatRoute
+  '/app/': typeof AppIndexRoute
+  '/app/admin/agents': typeof AppAdminAgentsRoute
+  '/app/admin/analytics': typeof AppAdminAnalyticsRoute
+  '/app/admin/assign': typeof AppAdminAssignRoute
+  '/app/admin/reports': typeof AppAdminReportsRoute
+  '/app/admin/upload': typeof AppAdminUploadRoute
+  '/app/ceo/people': typeof AppCeoPeopleRoute
+  '/app/ceo/teams': typeof AppCeoTeamsRoute
+  '/app/ceo/': typeof AppCeoIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/agent': typeof AppAgentRoute
+  '/app/chat': typeof AppChatRoute
+  '/app': typeof AppIndexRoute
+  '/app/admin/agents': typeof AppAdminAgentsRoute
+  '/app/admin/analytics': typeof AppAdminAnalyticsRoute
+  '/app/admin/assign': typeof AppAdminAssignRoute
+  '/app/admin/reports': typeof AppAdminReportsRoute
+  '/app/admin/upload': typeof AppAdminUploadRoute
+  '/app/ceo/people': typeof AppCeoPeopleRoute
+  '/app/ceo/teams': typeof AppCeoTeamsRoute
+  '/app/ceo': typeof AppCeoIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/login': typeof LoginRoute
+  '/signup': typeof SignupRoute
+  '/app/agent': typeof AppAgentRoute
+  '/app/chat': typeof AppChatRoute
+  '/app/': typeof AppIndexRoute
+  '/app/admin/agents': typeof AppAdminAgentsRoute
+  '/app/admin/analytics': typeof AppAdminAnalyticsRoute
+  '/app/admin/assign': typeof AppAdminAssignRoute
+  '/app/admin/reports': typeof AppAdminReportsRoute
+  '/app/admin/upload': typeof AppAdminUploadRoute
+  '/app/ceo/people': typeof AppCeoPeopleRoute
+  '/app/ceo/teams': typeof AppCeoTeamsRoute
+  '/app/ceo/': typeof AppCeoIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/agent'
+    | '/app/chat'
+    | '/app/'
+    | '/app/admin/agents'
+    | '/app/admin/analytics'
+    | '/app/admin/assign'
+    | '/app/admin/reports'
+    | '/app/admin/upload'
+    | '/app/ceo/people'
+    | '/app/ceo/teams'
+    | '/app/ceo/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/login'
+    | '/signup'
+    | '/app/agent'
+    | '/app/chat'
+    | '/app'
+    | '/app/admin/agents'
+    | '/app/admin/analytics'
+    | '/app/admin/assign'
+    | '/app/admin/reports'
+    | '/app/admin/upload'
+    | '/app/ceo/people'
+    | '/app/ceo/teams'
+    | '/app/ceo'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/login'
+    | '/signup'
+    | '/app/agent'
+    | '/app/chat'
+    | '/app/'
+    | '/app/admin/agents'
+    | '/app/admin/analytics'
+    | '/app/admin/assign'
+    | '/app/admin/reports'
+    | '/app/admin/upload'
+    | '/app/ceo/people'
+    | '/app/ceo/teams'
+    | '/app/ceo/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  LoginRoute: typeof LoginRoute
+  SignupRoute: typeof SignupRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +221,142 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/signup': {
+      id: '/signup'
+      path: '/signup'
+      fullPath: '/signup'
+      preLoaderRoute: typeof SignupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/agent': {
+      id: '/app/agent'
+      path: '/agent'
+      fullPath: '/app/agent'
+      preLoaderRoute: typeof AppAgentRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/chat': {
+      id: '/app/chat'
+      path: '/chat'
+      fullPath: '/app/chat'
+      preLoaderRoute: typeof AppChatRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin/agents': {
+      id: '/app/admin/agents'
+      path: '/admin/agents'
+      fullPath: '/app/admin/agents'
+      preLoaderRoute: typeof AppAdminAgentsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin/analytics': {
+      id: '/app/admin/analytics'
+      path: '/admin/analytics'
+      fullPath: '/app/admin/analytics'
+      preLoaderRoute: typeof AppAdminAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin/assign': {
+      id: '/app/admin/assign'
+      path: '/admin/assign'
+      fullPath: '/app/admin/assign'
+      preLoaderRoute: typeof AppAdminAssignRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin/reports': {
+      id: '/app/admin/reports'
+      path: '/admin/reports'
+      fullPath: '/app/admin/reports'
+      preLoaderRoute: typeof AppAdminReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/admin/upload': {
+      id: '/app/admin/upload'
+      path: '/admin/upload'
+      fullPath: '/app/admin/upload'
+      preLoaderRoute: typeof AppAdminUploadRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ceo/': {
+      id: '/app/ceo/'
+      path: '/ceo'
+      fullPath: '/app/ceo/'
+      preLoaderRoute: typeof AppCeoIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ceo/people': {
+      id: '/app/ceo/people'
+      path: '/ceo/people'
+      fullPath: '/app/ceo/people'
+      preLoaderRoute: typeof AppCeoPeopleRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/ceo/teams': {
+      id: '/app/ceo/teams'
+      path: '/ceo/teams'
+      fullPath: '/app/ceo/teams'
+      preLoaderRoute: typeof AppCeoTeamsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAgentRoute: typeof AppAgentRoute
+  AppChatRoute: typeof AppChatRoute
+  AppIndexRoute: typeof AppIndexRoute
+  AppAdminAgentsRoute: typeof AppAdminAgentsRoute
+  AppAdminAnalyticsRoute: typeof AppAdminAnalyticsRoute
+  AppAdminAssignRoute: typeof AppAdminAssignRoute
+  AppAdminReportsRoute: typeof AppAdminReportsRoute
+  AppAdminUploadRoute: typeof AppAdminUploadRoute
+  AppCeoPeopleRoute: typeof AppCeoPeopleRoute
+  AppCeoTeamsRoute: typeof AppCeoTeamsRoute
+  AppCeoIndexRoute: typeof AppCeoIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAgentRoute: AppAgentRoute,
+  AppChatRoute: AppChatRoute,
+  AppIndexRoute: AppIndexRoute,
+  AppAdminAgentsRoute: AppAdminAgentsRoute,
+  AppAdminAnalyticsRoute: AppAdminAnalyticsRoute,
+  AppAdminAssignRoute: AppAdminAssignRoute,
+  AppAdminReportsRoute: AppAdminReportsRoute,
+  AppAdminUploadRoute: AppAdminUploadRoute,
+  AppCeoPeopleRoute: AppCeoPeopleRoute,
+  AppCeoTeamsRoute: AppCeoTeamsRoute,
+  AppCeoIndexRoute: AppCeoIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  LoginRoute: LoginRoute,
+  SignupRoute: SignupRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
