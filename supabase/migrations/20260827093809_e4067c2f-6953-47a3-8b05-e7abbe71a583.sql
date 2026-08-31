@@ -1,0 +1,1 @@
+revoke execute on function public.current_user_role() from authenticated;
