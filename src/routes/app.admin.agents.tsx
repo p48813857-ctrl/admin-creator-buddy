@@ -1,10 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { useServerFn } from "@tanstack/react-start";
-import { useSuspenseQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { listUsers, setUserRole } from "@/lib/admin.functions";
-import { toast } from "sonner";
-import { cn } from "@/lib/utils";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { listUsers } from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/app/admin/agents")({
   component: () => (
@@ -20,19 +18,8 @@ function initials(name: string) {
 }
 
 function AgentsPage() {
-  const qc = useQueryClient();
   const fetchUsers = useServerFn(listUsers);
-  const doSetRole = useServerFn(setUserRole);
   const { data: users } = useSuspenseQuery({ queryKey: ["users"], queryFn: () => fetchUsers() });
-  const mut = useMutation({
-    mutationFn: (v: { targetUserId: string; role: "admin" | "agent"; action: "add" | "remove" }) =>
-      doSetRole({ data: v }),
-    onSuccess: () => {
-      toast.success("Role updated");
-      qc.invalidateQueries({ queryKey: ["users"] });
-    },
-    onError: (e: Error) => toast.error(e.message),
-  });
 
   return (
     <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
@@ -42,7 +29,6 @@ function AgentsPage() {
             <th className="p-3 text-left font-semibold">User</th>
             <th className="p-3 text-left font-semibold">Email</th>
             <th className="p-3 text-left font-semibold">Roles</th>
-            <th className="p-3 text-right font-semibold">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -79,31 +65,6 @@ function AgentsPage() {
                   {!isAdmin && !isAgent && (
                     <span className="text-xs text-slate-400">No roles</span>
                   )}
-                </td>
-                <td className="space-x-2 p-3 text-right">
-                  {(["admin", "agent"] as const).map((role) => {
-                    const has = role === "admin" ? isAdmin : isAgent;
-                    return (
-                      <button
-                        key={role}
-                        onClick={() =>
-                          mut.mutate({
-                            targetUserId: u.id,
-                            role,
-                            action: has ? "remove" : "add",
-                          })
-                        }
-                        className={cn(
-                          "rounded-lg border px-3 py-1.5 text-xs font-medium transition",
-                          has
-                            ? "border-rose-200 bg-rose-50 text-rose-700 hover:bg-rose-100 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-300"
-                            : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700",
-                        )}
-                      >
-                        {has ? `Remove ${role}` : `Make ${role}`}
-                      </button>
-                    );
-                  })}
                 </td>
               </tr>
             );
