@@ -54,7 +54,7 @@ function CeoOverview() {
             {data.byTeam.length === 0 && (
               <tr>
                 <td colSpan={4} className="p-6 text-center text-slate-500">
-                  No teams yet — create one under Teams.
+                  No teams yet — create one under People & Roles.
                 </td>
               </tr>
             )}

@@ -9,6 +9,7 @@ import {
   deletePerson,
   listTeams,
 } from "@/lib/ceo.functions";
+import { TeamsSection } from "@/components/ceo-teams";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/app/ceo/people")({
@@ -217,6 +218,8 @@ function PeoplePage() {
           </tbody>
         </table>
       </div>
+
+      <TeamsSection />
     </div>
   );
 }

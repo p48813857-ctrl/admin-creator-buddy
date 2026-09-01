@@ -1,20 +1,10 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { useServerFn } from "@tanstack/react-start";
 import { useSuspenseQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { listTeams, createTeam, updateTeam, deleteTeam, listPeople } from "@/lib/ceo.functions";
 import { toast } from "sonner";
 
-export const Route = createFileRoute("/app/ceo/teams")({
-  component: () => (
-    <Suspense fallback={<div className="text-slate-500">Loading…</div>}>
-      <TeamsPage />
-    </Suspense>
-  ),
-  errorComponent: ({ error }) => <div className="text-destructive">Error: {error.message}</div>,
-});
-
-function TeamsPage() {
+export function TeamsSection() {
   const qc = useQueryClient();
   const fetchTeams = useServerFn(listTeams);
   const fetchPeople = useServerFn(listPeople);
@@ -67,6 +57,7 @@ function TeamsPage() {
 
   return (
     <div className="space-y-6">
+      <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">Teams</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
