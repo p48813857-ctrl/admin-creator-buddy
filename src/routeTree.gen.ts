@@ -23,7 +23,6 @@ import { Route as AppAdminReportsRouteImport } from './routes/app.admin.reports'
 import { Route as AppAdminUploadRouteImport } from './routes/app.admin.upload'
 import { Route as AppCeoIndexRouteImport } from './routes/app.ceo.index'
 import { Route as AppCeoPeopleRouteImport } from './routes/app.ceo.people'
-import { Route as AppCeoTeamsRouteImport } from './routes/app.ceo.teams'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -95,11 +94,6 @@ const AppCeoPeopleRoute = AppCeoPeopleRouteImport.update({
   path: '/ceo/people',
   getParentRoute: () => AppRoute,
 } as any)
-const AppCeoTeamsRoute = AppCeoTeamsRouteImport.update({
-  id: '/ceo/teams',
-  path: '/ceo/teams',
-  getParentRoute: () => AppRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -115,7 +109,6 @@ export interface FileRoutesByFullPath {
   '/app/admin/reports': typeof AppAdminReportsRoute
   '/app/admin/upload': typeof AppAdminUploadRoute
   '/app/ceo/people': typeof AppCeoPeopleRoute
-  '/app/ceo/teams': typeof AppCeoTeamsRoute
   '/app/ceo/': typeof AppCeoIndexRoute
 }
 export interface FileRoutesByTo {
@@ -131,7 +124,6 @@ export interface FileRoutesByTo {
   '/app/admin/reports': typeof AppAdminReportsRoute
   '/app/admin/upload': typeof AppAdminUploadRoute
   '/app/ceo/people': typeof AppCeoPeopleRoute
-  '/app/ceo/teams': typeof AppCeoTeamsRoute
   '/app/ceo': typeof AppCeoIndexRoute
 }
 export interface FileRoutesById {
@@ -149,7 +141,6 @@ export interface FileRoutesById {
   '/app/admin/reports': typeof AppAdminReportsRoute
   '/app/admin/upload': typeof AppAdminUploadRoute
   '/app/ceo/people': typeof AppCeoPeopleRoute
-  '/app/ceo/teams': typeof AppCeoTeamsRoute
   '/app/ceo/': typeof AppCeoIndexRoute
 }
 export interface FileRouteTypes {
@@ -168,7 +159,6 @@ export interface FileRouteTypes {
     | '/app/admin/reports'
     | '/app/admin/upload'
     | '/app/ceo/people'
-    | '/app/ceo/teams'
     | '/app/ceo/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -184,7 +174,6 @@ export interface FileRouteTypes {
     | '/app/admin/reports'
     | '/app/admin/upload'
     | '/app/ceo/people'
-    | '/app/ceo/teams'
     | '/app/ceo'
   id:
     | '__root__'
@@ -201,7 +190,6 @@ export interface FileRouteTypes {
     | '/app/admin/reports'
     | '/app/admin/upload'
     | '/app/ceo/people'
-    | '/app/ceo/teams'
     | '/app/ceo/'
   fileRoutesById: FileRoutesById
 }
@@ -312,13 +300,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppCeoPeopleRouteImport
       parentRoute: typeof AppRoute
     }
-    '/app/ceo/teams': {
-      id: '/app/ceo/teams'
-      path: '/ceo/teams'
-      fullPath: '/app/ceo/teams'
-      preLoaderRoute: typeof AppCeoTeamsRouteImport
-      parentRoute: typeof AppRoute
-    }
   }
 }
 
@@ -332,7 +313,6 @@ interface AppRouteChildren {
   AppAdminReportsRoute: typeof AppAdminReportsRoute
   AppAdminUploadRoute: typeof AppAdminUploadRoute
   AppCeoPeopleRoute: typeof AppCeoPeopleRoute
-  AppCeoTeamsRoute: typeof AppCeoTeamsRoute
   AppCeoIndexRoute: typeof AppCeoIndexRoute
 }
 
@@ -346,7 +326,6 @@ const AppRouteChildren: AppRouteChildren = {
   AppAdminReportsRoute: AppAdminReportsRoute,
   AppAdminUploadRoute: AppAdminUploadRoute,
   AppCeoPeopleRoute: AppCeoPeopleRoute,
-  AppCeoTeamsRoute: AppCeoTeamsRoute,
   AppCeoIndexRoute: AppCeoIndexRoute,
 }
 
