@@ -15,7 +15,10 @@ function LoginPage() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault();
     setLoading(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.trim().toLowerCase(),
+      password: password.trim(),
+    });
     setLoading(false);
     if (error) return toast.error(error.message);
     navigate({ to: "/app" });
