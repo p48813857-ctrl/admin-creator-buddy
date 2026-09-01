@@ -26,8 +26,7 @@ import { cn } from "@/lib/utils";
 
 const PAGE_META: Record<string, { title: string; subtitle?: string }> = {
   "/app/ceo": { title: "CEO Dashboard", subtitle: "Company-wide performance across every team" },
-  "/app/ceo/teams": { title: "Teams", subtitle: "Create teams and assign team leaders" },
-  "/app/ceo/people": { title: "People", subtitle: "Create team leaders and agents, manage roles" },
+  "/app/ceo/people": { title: "People", subtitle: "Create team leaders and agents, manage roles and teams" },
   "/app/admin/upload": { title: "Excel Upload", subtitle: "Import customer leads from spreadsheets" },
   "/app/admin/assign": { title: "Lead Management", subtitle: "View, assign, edit, and track customer leads" },
   "/app/admin/agents": { title: "Agent Management", subtitle: "Manage call agents and their roles" },
@@ -56,7 +55,6 @@ export function AppShell() {
 
   const ceoNav = [
     { to: "/app/ceo", label: "Company Overview", icon: Building2 },
-    { to: "/app/ceo/teams", label: "Teams", icon: Users },
     { to: "/app/ceo/people", label: "People & Roles", icon: UserCog },
     { to: "/app/admin/analytics", label: "Business Analytics", icon: BarChart3 },
     { to: "/app/admin/reports", label: "Reports", icon: FileText },
